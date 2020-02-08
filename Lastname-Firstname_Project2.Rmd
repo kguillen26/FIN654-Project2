@@ -1,11 +1,20 @@
 ---
-title: 'Project #2: foreign exchange market interactions'
+title: "Lastname-Firstname_Project1"
+author:
+- Guillermo Delgado
+- Katie Guillen
+- Leanne Harper
+- Nicolas Schoonmaker
+date: "1/25/2020"
 output:
+  pdf_document: default
+  word_document: default
   html_document:
     toc: true
     toc_float: true
-subtitle: 'Live sessions: weeks 3 and 4'
+subtitle: 'Foreign exchange market interactions'
 ---
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, eval = TRUE, warning=FALSE, message=FALSE)
