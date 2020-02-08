@@ -23,7 +23,12 @@ subtitle: 'Foreign exchange market interactions'
 ## Disable inline preview of the Markdown file:
 ### In RStudio, Tools > Global Options... > R Markdown > Show equations and Image previews (Never)
 
-```{r setup, include=FALSE}
+
+## Setup chunk defaults
+```{r Chunk setup}
+require(knitr)
+
+# Echo the output
 knitr::opts_chunk$set(echo = TRUE, eval = TRUE, warning=FALSE, message=FALSE)
 knitr::opts_chunk$set(tidy = TRUE)
 knitr::opts_chunk$set(tidy.opts=list(width.cutoff=36))
@@ -40,6 +45,22 @@ knitr::knit_hooks$set(mysize = function(before, options, envir) {
     return(options$size)
 })
 ```
+
+## Display packages to install
+```{r Packages and Installers}
+# Install RTools
+# https://cran.rstudio.com/bin/windows/Rtools/
+#
+# Install Tinytex
+# tinytex::install_tinytex()
+#
+# Restart R Studio
+#
+# Install packages
+#install.packages("xtable")
+#install.packages("dplyr")
+#install.packages("rstudioapi")
+#install.packages("tinytex")
 
 ## Purpose, Process, Product
 
