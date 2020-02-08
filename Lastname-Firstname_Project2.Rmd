@@ -207,6 +207,7 @@ ggplotly(p1)
 2. Let's dig deeper and compute mean, standard deviation, etc. Load the `data_moments()` function. Run the function using the `exrates` data and write a `knitr::kable()` report.
 
 ```{r }
+#windows()
 acf(coredata(exrates.xts[ , 1:4])) # returns
 acf(coredata(exrates.xts[ , 5:8])) # sizes
 pacf(coredata(exrates.xts[ , 1:4])) # returns
