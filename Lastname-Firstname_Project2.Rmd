@@ -142,7 +142,7 @@ Marketing and accounts receivables managers at our company continue to note we h
 
 To get a handle on exchange rate exposures we download this data set and review some basic aspects of the exchange rates. 
 
-```{r }
+```{r Read data}
 # Read in data
 library(zoo)
 library(xts)
@@ -165,7 +165,7 @@ summary(exrates)
 
 - Using this data frame, interpret appreciation and depreciation in terms of the impact on the receipt of cash flow from customer's accounts that are denominated in other than our USD functional currency.
 
-```{r }
+```{r Log differences}
 # Compute log differences percent using as.matrix to force numeric type
 exrates.r <- diff(log(as.matrix(exrates[, -1]))) * 100
 head(exrates.r)
@@ -195,7 +195,7 @@ head(exrates.xts)
 
 We can plot with the `ggplot2` package. In the `ggplot` statements we use `aes`, "aesthetics", to pick `x` (horizontal) and `y` (vertical) axes. Use `group =1` to ensure that all data is plotted. The added (`+`) `geom_line` is the geometrical method that builds the line plot.
 
-```{r }
+```{r Exchange Rate Percent plot}
 library(ggplot2)
 library(plotly)
 title.chg <- "Exchange Rate Percent Changes"
@@ -206,7 +206,7 @@ ggplotly(p1)
 
 2. Let's dig deeper and compute mean, standard deviation, etc. Load the `data_moments()` function. Run the function using the `exrates` data and write a `knitr::kable()` report.
 
-```{r }
+```{r Data moments}
 #windows()
 acf(coredata(exrates.xts[ , 1:4])) # returns
 acf(coredata(exrates.xts[ , 5:8])) # sizes
@@ -247,7 +247,7 @@ We want to characterize the distribution of up and down movements visually. Also
 #### Questions 
 1. How can we show the shape of our exposure to euros, especially given our tolerance for risk? Suppose corporate policy set tolerance at 95\%. Let's use the `exrates.df` data frame with `ggplot2` and the cumulative relative frequency function `stat_ecdf`.
 
-```{r }
+```{r Tolerable Rate Plot}
 exrates.tol.pct <- 0.95
 exrates.tol <- quantile(exrates.df$returns.USD.EUR, exrates.tol.pct)
 exrates.tol.label <- paste("Tolerable Rate = ", round(exrates.tol, 2), "%", sep = "")
@@ -257,7 +257,7 @@ ggplotly(p)
 
 2. What is the history of correlations in the exchange rate markets? If this is a "history," then we have to manage the risk that conducting business in one country will definitely affect business in another. Further that bad things will be followed by more bad things more often than good things. We will create a rolling correlation function, `corr_rolling`, and embed this function into the `rollapply()` function (look this one up!).
 
-```{r }
+```{r Cross Correlation of Returns}
 one <- ts(exrates.df$returns.USD.EUR)
 two <- ts(exrates.df$returns.USD.GBP)
 # or
@@ -296,7 +296,7 @@ run_ccf(one, two, main = title, lag = 20, color = "red")
 
 One more experiment, rolling correlations and volatilities using these functions:	
 
-```{r}
+```{r Rolling examples}
 corr_rolling <- function(x) {	
   dim <- ncol(x)	
   corr_r <- cor(x)[lower.tri(diag(dim), diag = FALSE)]	
@@ -320,7 +320,7 @@ r_corr_vol <- merge(ALL.r, corr_r, vol_r, year)
 
 4. How related are correlations and volatilities? Put another way, do we have to be concerned that inter-market transactions (e.g., customers and vendors transacting in more than one currency) can affect transactions in a single market? Let's  model the the `exrate` data to understand how correlations and volatilities depend upon one another.
 
-```{r}
+```{r Related Correlations and Volatilities}
 library(quantreg)
 taus <- seq(.05,.95, .05)	# Roger Koenker UIC Bob Hogg and Allen Craig
 fit.rq.CNY.JPY <- rq(log(CNY.JPY) ~ log(JPY.vol), tau = taus, data = r_corr_vol)	
@@ -345,7 +345,7 @@ Here is the quantile regression part of the package.
  	
 ### Animation
 
-```{r}
+```{r Animation}
 library(quantreg)
 library(magick)
 img <- image_graph(res = 96)
@@ -373,7 +373,7 @@ In the `ccf()` function we get results that produce positive and negative lags. 
 
 Suppose we lead the USD.EUR return by 5 days and lag the USD.GBP by 5 days. We will compare the correlation in this case with the opposite: lead the USD.GBP return by 5 days and lag the USD.EUR by 5 days.  We will use the `dplyr` package to help us.
 
-```{r}
+```{r Table of Returns}
 library(dplyr)
 x <- as.numeric(exrates.df$returns.USD.EUR) # USD.EUR
 y <- as.numeric(exrates.df$returns.USD.GBP) # USD.GBP
