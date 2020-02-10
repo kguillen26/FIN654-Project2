@@ -181,7 +181,8 @@ str(exrates.r)
 size <- na.omit(abs(exrates.r)) # size is indicator of volatility
 head(size)
 # colnames(size) <- paste(colnames(size),".size", sep = "") # Teetor
-direction <- ifelse(exrates.r > 0, 1, ifelse(exrates.r < 0, -1, 0)) # another indicator of volatility
+# another indicator of volatility
+direction <- ifelse(exrates.r > 0, 1, ifelse(exrates.r < 0, -1, 0))
 # colnames(direction) <- paste(colnames(direction),".dir", sep = "")
 head(direction)
 # Convert into a time series object: 
@@ -189,10 +190,14 @@ head(direction)
 dates <- as.Date(exrates$DATE[-1], "%m/%d/%Y")
 values <- cbind(exrates.r, size, direction)
 # for dplyr pivoting we need a data frame
-exrates.df <- data.frame(dates = dates, returns = exrates.r, size = size, direction = direction)
+exrates.df <- data.frame(dates = dates, 
+                         returns = exrates.r, 
+                         size = size, 
+                         direction = direction)
 str(exrates.df) # notice the returns.* and direction.* prefixes
 # 2. Make an xts object with row names equal to the dates
-exrates.xts <- na.omit(as.xts(values, dates)) #order.by=as.Date(dates, "%d/%m/%Y")))
+#order.by=as.Date(dates, "%d/%m/%Y")))
+exrates.xts <- na.omit(as.xts(values, dates))
 str(exrates.xts)
 exrates.zr <- na.omit(as.zooreg(exrates.xts))
 str(exrates.zr)
@@ -231,7 +236,12 @@ data_moments <- function(data){
   IQR.r <- colIQRs(data)
   skewness.r <- skewness(data)
   kurtosis.r <- kurtosis(data)
-  result <- data.frame(mean = mean.r, median = median.r, std_dev = sd.r, IQR = IQR.r, skewness = skewness.r, kurtosis = kurtosis.r)
+  result <- data.frame(mean = mean.r, 
+                       median = median.r, 
+                       std_dev = sd.r, 
+                       IQR = IQR.r, 
+                       skewness = skewness.r, 
+                       kurtosis = kurtosis.r)
   return(result)
 }
 # Run data_moments()
@@ -257,7 +267,14 @@ We want to characterize the distribution of up and down movements visually. Also
 exrates.tol.pct <- 0.95
 exrates.tol <- quantile(exrates.df$returns.USD.EUR, exrates.tol.pct)
 exrates.tol.label <- paste("Tolerable Rate = ", round(exrates.tol, 2), "%", sep = "")
-p <- ggplot(exrates.df, aes(returns.USD.EUR, fill = direction.USD.EUR)) + stat_ecdf(colour = "blue", size = 0.75, geom = "point") + geom_vline(xintercept = exrates.tol, colour = "red", size = 1.5) + annotate("text", x = exrates.tol + 1 , y = 0.75, label = exrates.tol.label, colour = "darkred")
+p <- ggplot(exrates.df, aes(returns.USD.EUR, fill = direction.USD.EUR)) +
+  stat_ecdf(colour = "blue", size = 0.75, geom = "point") + 
+  geom_vline(xintercept = exrates.tol, colour = "red", size = 1.5) +
+  annotate("text", 
+           x = exrates.tol + 1 , 
+           y = 0.75, 
+           label = exrates.tol.label, 
+           colour = "darkred")
 ggplotly(p)
 ```
 
@@ -269,7 +286,13 @@ two <- ts(exrates.df$returns.USD.GBP)
 # or
 one <- ts(exrates.zr[,1])
 two <- ts(exrates.zr[,2])
-ccf(abs(one), abs(two), main = "GBP vs. EUR", lag.max = 20, xlab = "", ylab = "", ci.col = "red")
+ccf(abs(one), 
+    abs(two), 
+    main = "GBP vs. EUR", 
+    lag.max = 20, 
+    xlab = "", 
+    ylab = "", 
+    ci.col = "red")
 # build function to repeat these routines
 run_ccf <- function(one, two, main = "one vs. two", lag = 20, color = "red"){
   # one and two are equal length series
@@ -315,9 +338,17 @@ vol_rolling <- function(x){
 }
 ALL.r <- exrates.xts[, 1:4]
 window <- 90 #reactive({input$window})
-corr_r <- rollapply(ALL.r, width = window, corr_rolling, align = "right", by.column = FALSE)
+corr_r <- rollapply(ALL.r, 
+                    width = window, 
+                    corr_rolling, 
+                    align = "right", 
+                    by.column = FALSE)
 colnames(corr_r) <- c("EUR.GBP", "EUR.CNY", "EUR.JPY", "GBP.CNY", "GBP.JPY", "CNY.JPY")
-vol_r <- rollapply(ALL.r, width = window, vol_rolling, align = "right", by.column = FALSE)
+vol_r <- rollapply(ALL.r, 
+                   width = window, 
+                   vol_rolling, 
+                   align = "right", 
+                   by.column = FALSE)
 colnames(vol_r) <- c("EUR.vol", "GBP.vol", "CNY.vol", "JPY.vol")
 year <- format(index(corr_r), "%Y")
 r_corr_vol <- merge(ALL.r, corr_r, vol_r, year)
@@ -335,7 +366,7 @@ fit.lm.CNY.JPY <- lm(log(CNY.JPY) ~ log(JPY.vol), data = r_corr_vol)
 CNY.JPY.summary <- summary(fit.rq.CNY.JPY, se = "boot")
 CNY.JPY.summary
 plot(CNY.JPY.summary)
-#
+# <TODO>
 
 ```
 
