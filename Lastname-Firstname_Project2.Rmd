@@ -17,14 +17,16 @@ always_allow_html: true
 ---
 
 # Setup
-## Using RMD from: https://github.com/wgfoote/fin-alytics/blob/master/HTML/PR02_exrates-solution.html
+Using RMD from: https://github.com/wgfoote/fin-alytics/blob/master/HTML/PR02_exrates-solution.html
 
-## Our code is on github at: https://github.com/nschoonm/FIN654-Project2
+## GitHub
+Our code is on github at: https://github.com/nschoonm/FIN654-Project2
 
-## Disable inline preview of the Markdown file:
-### In RStudio, Tools > Global Options... > R Markdown > Show equations and Image previews (Never)
+## Disable inline preview
+To disable inline preview of the Markdown file, go in RStudio, Tools > Global Options... > R Markdown > Show equations and Image previews (Never)
 
-## This must be knit as an HTML file because this contains an animated gif that can not easily be added to a PDF
+## Knit Notes
+This must be knit as an HTML file because this contains an animated gif that can not easily be added to a PDF
 
 ## Setup chunk defaults
 ```{r Chunk setup}
@@ -48,7 +50,7 @@ knitr::knit_hooks$set(mysize = function(before, options, envir) {
 })
 ```
 
-## Display packages to install
+## Packages to install
 ```{r Packages and Installers}
 # Install RTools
 # https://cran.rstudio.com/bin/windows/Rtools/
@@ -67,7 +69,7 @@ knitr::knit_hooks$set(mysize = function(before, options, envir) {
 #install.packages("plotly")
 ```
 
-## Show libraries to include
+## Libraries to include
 ```{r Library Includes}
 # The list of libraries to include
 library(stats)
@@ -76,7 +78,8 @@ library(dplyr)
 library(rstudioapi)
 ```
 
-## Get the currenet working directory so we can run this file from anywhere. This will allow this script to work from RStudio or from the command line
+## Get Working Directory
+Get the currenet working directory so we can run this file from anywhere. This will allow this script to work from RStudio or from the command line
 ```{r Get current directory}
 # Get the directory so we can run this from anywhere
 # Get the script directory from R when running in R
@@ -95,7 +98,8 @@ if(!exists("script.dir"))
 (script.dir)
 ```
 
-## Set the working directory based on where the script is
+## Set Working Directory
+Set the working directory based on where the script is
 ```{r Working Directory and Data setup}
 # Set my working directory
 # There is a "data" folder here with the files and the script
@@ -112,11 +116,11 @@ if(dir.exists(paste(getwd(),"/data", sep = "")) == FALSE) {
 }
 ```
 
-## Purpose, Process, Product
+# Purpose, Process, Product
 
 This group assignment provides practice in foreign exchange markets as well as R models of those markets. Specifically we will practice reading in data, exploring time series, estimating auto and cross correlations, and investigating volatility clustering in financial time series. We will summarize our experiences in debrief. We will pay special attention to the financial economics of exchange rates.
 
-## Assignment
+# Assignment
 
 This assignment will span Live Sessions 3 and 4 (two weeks). Project 2 is due before Live Session 5. Submit into **Coursework > Assignments and Grading > Project 2 > Submission** an `RMD`  file with filename **lastname-firstname_Project2.Rmd** and a knitted PDF or html file of the same name.
 
@@ -128,11 +132,11 @@ This assignment will span Live Sessions 3 and 4 (two weeks). Project 2 is due be
 
 4. Discuss how well did the results begin to answer the business questions posed at the beginning of each part of the project.
 
-## Part 1
+# Part 1
 
 In this set we will build and explore a data set using filters and `if` and `diff` statements. We will then answer some questions using plots and a pivot table report. We will then review a function to house our approach in case we would like to run some of the same analysis on other data sets.
 
-#### Problem
+## Problem
 
 Marketing and accounts receivables managers at our company continue to note we have a significant exposure to exchange rates. Our functional currency (what we report in financial statements) is in U.S. dollars (USD). 
 
@@ -159,7 +163,7 @@ str(exrates)
 summary(exrates)
 ```
 
-#### Questions
+## Questions
 
 1. What is the nature of exchange rates in general and in particular for this data set? We want to reflect the ups and downs of rate movements, known to managers as currency appreciation and depreciation. 
 
@@ -238,15 +242,15 @@ knitr::kable(answer)
 mean(exrates.xts[,4])
 ```
 
-## Part 2
+# Part 2
 
 We will use the data from the first part to investigate the interactions of the distribution of exchange rates.
 
-#### Problem
+## Problem
 
 We want to characterize the distribution of up and down movements visually. Also we would like to repeat the analysis periodically for inclusion in management reports.
 
-#### Questions 
+## Questions 
 1. How can we show the shape of our exposure to euros, especially given our tolerance for risk? Suppose corporate policy set tolerance at 95\%. Let's use the `exrates.df` data frame with `ggplot2` and the cumulative relative frequency function `stat_ecdf`.
 
 ```{r Tolerable Rate Plot}
@@ -369,7 +373,7 @@ animation
 	
 Attempt interpretations to help managers understand the way market interactions affect accounts receivables.
 
-## Notes on lead and lag
+# Notes on lead and lag
 
 In the `ccf()` function we get results that produce positive and negative lags. A positive lag looks back and a negative lag (a lead) looks forward in the history of a time series. Leading and lagging two different serries, then computing the moments and corelations show a definite asymmetry.
 
