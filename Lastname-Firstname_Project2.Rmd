@@ -427,3 +427,14 @@ cor(as.numeric(yx.df$ahead_y), as.numeric(yx.df$behind_x))
 ```
 
 Leading x, lagging y will produce a negative correlation. The opposite produces an even smaller and positive correlation. Differences in means, etc. are not huge between the two cases, but when combined produce the correlational differences.
+
+# Conclusion
+## Skills and Tools
+What methods & packages contributed towards data exploration and analytics?
+
+## Data Insights
+Explain some of the data exploration, statistics and graphs here - include some research on foreign exchange rates.
+
+## Business Remarks
+Attempt interpretations to help managers understand they way market interactions affect accounts receivables.  What is the interplay between supplier costs and customer costs for this business?  How does China rates impact the situation?
+
