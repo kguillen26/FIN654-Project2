@@ -7,12 +7,13 @@ author:
 - Nicolas Schoonmaker
 date: "1/25/2020"
 output:
-  pdf_document: default
-  word_document: default
   html_document:
     toc: true
     toc_float: true
+  word_document: default
+  pdf_document: default
 subtitle: 'Foreign exchange market interactions'
+always_allow_html: true
 ---
 
 # Setup
@@ -23,6 +24,7 @@ subtitle: 'Foreign exchange market interactions'
 ## Disable inline preview of the Markdown file:
 ### In RStudio, Tools > Global Options... > R Markdown > Show equations and Image previews (Never)
 
+## This must be knit as an HTML file because this contains an animated gif that can not easily be added to a PDF
 
 ## Setup chunk defaults
 ```{r Chunk setup}
