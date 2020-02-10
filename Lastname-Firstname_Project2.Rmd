@@ -380,7 +380,7 @@ Here is the quantile regression part of the package.
 6. The risk relationships can also be viewed year by year. Here we see very different patterns
 7. $y = a + bx + e$ is interpreted as systematic movements in $y = a + bx$, while unsystematic movements are simply $e$.
  	
-### Animation
+## Animation
 
 ```{r Animation}
 library(quantreg)
