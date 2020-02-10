@@ -49,3 +49,6 @@ vignettes/*.pdf
 
 # TEX
 *.tex
+
+# HTML
+*.html
