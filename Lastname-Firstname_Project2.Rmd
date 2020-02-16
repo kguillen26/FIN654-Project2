@@ -61,7 +61,6 @@ knitr::knit_hooks$set(mysize = function(before, options, envir) {
 # Restart R Studio
 #
 # Install packages
-#install.packages("xtable")
 #install.packages("dplyr")
 #install.packages("rstudioapi")
 #install.packages("tinytex")
@@ -78,7 +77,6 @@ knitr::knit_hooks$set(mysize = function(before, options, envir) {
 ```{r Library Includes}
 # The list of libraries to include
 library(stats)
-library(xtable)
 library(dplyr)
 library(rstudioapi)
 ```
@@ -436,6 +434,142 @@ Leading x, lagging y will produce a negative correlation. The opposite produces 
 # Conclusion
 ## Skills and Tools
 What methods & packages contributed towards data exploration and analytics?
+
+The ability to interpret data moments, heteroscedasticity, autocorrelation, and partial autocorrelation are some essential components of the provided analysis.
+
+The following methods & packages in R were used to explore the data:
+
+1. dplyr
+  + A grammar of data manipulation package
+2. ggplot2
+  + Create elegant data visualisations using the grammar of graphics package
+3. magick
+  + Advanced graphics and image-processing in R package
+4. matrixStats
+  + Functions that apply to rows and columns of matricies (and vectors) package
+5. moments
+  + Moments, cumulants, skewness, kurtosis and related tests package
+6. quantreg
+  + Quantile regression package
+7. xts
+  + eXtensible Time Series package
+8. zoo
+  + S3 infrastructure for regular and irregular time series package
+  
+The specific functions used where:  
+  
+1. na.omit
+  + Returns the object with incomplete cases removed.
+2. read.csv
+  + Reads a file in table format and creates a data frame from it, with cases corresponding to lines and variables to fields in the file. read.csv and read.csv2 are identical to read.table except for the defaults. They are intended for reading ‘comma separated value’ files (‘.csv’).
+3. head
+  + Returns the first or last parts of a vector, matrix, table, data frame or function. Since head() and tail() are generic functions, they may also have been extended to other classes.
+4. tail
+  + Returns the first (last) n rows when n >= 0 or all but the last (first) n rows when n < 0.
+5. str
+  + Compactly display the internal structure of an R object, a diagnostic function and an alternative to summary.
+6. summary
+  + Generic function used to produce result summaries of the results of various. model fitting functions. 
+7. diff
+  + Returns suitably lagged and iterated differences.
+8. log
+  + Computes logarithms, by default natural logarithms.
+9. as.matrix
+  + Attempts to turn its argument into a matrix.
+10. as.Date
+  + Convert an object to a date or date-time.
+11. cbind
+  + Take a sequence of vector, matrix or data-frame arguments and combine by columns or rows, respectively.
+12. data.frame
+  + Creates data frames, tightly coupled collections of variables which share many of the properties of matrices and of lists, used as the fundamental data structure by most of R's modeling software.
+13. autoplot.zoo
+  + Takes a zoo object and returns a ggplot2 object.
+14. ggplotly
+  + This function converts a ggplot2::ggplot() object to a plotly object.
+15. acf
+  + The function acf computes (and by default plots) estimates of the autocovariance or autocorrelation function.
+16. pacf
+  + Function used for the partial autocorrelations. 
+17. colMeans
+  + Calculates the mean for each column in a matrix.
+18. colMedians
+  + Calculates the median for each column in a matrix.
+19. colSds
+  + Standard deviation estimates for each column in a matrix.
+20. colIQRs
+  + Estimates of the interquartile range for each column in a matrix.
+21. skewness
+  + This function computes skewness of given data. In statistics, skewness is a measure of the asymmetry of the probability distribution of a random variable about its mean. In other words, skewness tells you the amount and direction of skew (departure from horizontal symmetry). The skewness value can be positive or negative, or even undefined.
+22. kurtosis
+  + This function computes the estimator of Pearson's measure of kurtosis. Like skewness, kurtosis is a statistical measure that is used to describe the distribution. Whereas skewness differentiates extreme values in one versus the other tail, kurtosis measures extreme values in either tail. Distributions with large kurtosis exhibit tail data exceeding the tails of the normal distribution (e.g., five or more standard deviations from the mean). Distributions with low kurtosis exhibit tail data that are generally less extreme than the tails of the normal distribution.
+23. round
+  + Round rounds the values in its first argument to the specified number of decimal places (default 0).
+24. knitr::kable
+  + This is a very simple table generator. It is simple by design. It is not intended to replace any other R packages for making tables.
+25. mean
+  + Generic function for the (trimmed) arithmetic mean.
+26. quantile
+  + The generic function quantile produces sample quantiles corresponding to the given probabilities. The smallest observation corresponds to a probability of 0 and the largest to a probability of 1.
+27. paste
+  + Concatenate vectors after converting to character.
+28. ggplot
+  + Initializes a ggplot object. It can be used to declare the input data frame for a graphic and to specify the set of plot aesthetics intended to be common throughout all subsequent layers unless specifically overridden.
+29. aes
+  + Aesthetic mappings describe how variables in the data are mapped to visual properties (aesthetics) of geoms.
+30. stat_ecdf
+  + The empirical cumulative distribution function (ECDF) provides an alternative visualisation of distribution.
+31. geom_vline
+  + These geoms add reference lines (sometimes called rules) to a plot, either horizontal, vertical, or diagonal (specified by slope and intercept). These are useful for annotating plots.
+32. annotate
+  + This function adds geoms to a plot, but unlike typical a geom function, the properties of the geoms are not mapped from variables of a data frame, but are instead passed in as vectors. This is useful for adding small annotations (such as text labels) or if you have your data in vectors, and for some reason don't want to put them in a data frame.
+33. ts
+  + Used to create time-series objects.
+34. ccf
+  + Computes the cross-correlation or cross-covariance of two univariate series.
+35. abs
+  + Computes the absolute value of x.
+36. length
+  + Get or set the length of vectors (including lists) and factors, and of any other R object for which a method has been defined.
+37. ncol
+  + Return the number of columns present in x.
+38. cor
+  + Compute the covariance of x and y if these are vectors.
+39. rollapply
+  + A generic function for applying a function to rolling margins of an array.
+40. format
+  + Format an R object for pretty printing.
+41. index
+  + Generic functions for extracting the index of an object and replacing it.
+42. merge
+  + Merge two data frames by common columns or row names, or do other versions of database join operations.
+43. seq
+  + Generate regular sequences. seq is a standard generic with a default method.
+44. rq
+  + Quantile regression.
+45. lm
+  + Used to fit linear models. It can be used to carry out regression, single stratum analysis of variance and analysis of covariance.
+46. plot
+  + Generic function for plotting of R objects.
+47. image_graph
+  + Graphics device that produces a Magick image. Can either be used like a regular device for making plots, or alternatively via image_draw to open a device which draws onto an existing image using pixel coordinates.
+48. split
+  + Divides the data in the vector x into the groups defined by f. 
+49. lapply
+  + Returns a list of the same length as X, each element of which is the result of applying FUN to the corresponding element of X.
+50. geom_point
+  + The point geom is used to create scatterplots. The scatterplot is most useful for displaying the relationship between two continuous variables.
+51. ggtitle
+  + Title label on the plot.
+52. geom_quantile
+  + This fits a quantile regression to the data and draws the fitted quantiles with lines.
+53. geom_density_2d
+  + Perform a 2D kernel density estimation using MASS::kde2d() and display the results with contours. This can be useful for dealing with overplotting. This is a 2d version of geom_density().
+54. image_animate
+  + Operations to manipulate or combine multiple frames of an image.
+55. as.numeric
+  + Method should return an object of base type "numeric" number.
+56. lag
+  + Compute a lagged version of a time series, shifting the time base back by a given number of observations.
 
 ## Data Insights
 Explain some of the data exploration, statistics and graphs here - include some research on foreign exchange rates.
