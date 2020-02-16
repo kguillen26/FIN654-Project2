@@ -440,21 +440,21 @@ The ability to interpret data moments, heteroscedasticity, autocorrelation, and 
 The following methods & packages in R were used to explore the data:
 
 1. dplyr
-  + A grammar of data manipulation package
+  + A grammar of data manipulation package. Used to compare the USD.EUR to the USD.GBP with a 5 day lead and lag.
 2. ggplot2
-  + Create elegant data visualisations using the grammar of graphics package
+  + Create elegant data visualisations using the grammar of graphics package.  Used to visualize the size and direction of the exchange rate percentages.
 3. magick
-  + Advanced graphics and image-processing in R package
+  + Advanced graphics and image-processing in R package. Used to process and manipulate the images produced by our quantile regression.
 4. matrixStats
   + Functions that apply to rows and columns of matricies (and vectors) package
-5. moments
-  + Moments, cumulants, skewness, kurtosis and related tests package
+5. moments. Used to show the estimated mean, median, standard deviation, interquartile range, skewness and kurtosis.
+  + Moments, cumulants, skewness, kurtosis and related tests package.  Used to find the standard deviation, mean, skewness and kurtosis.
 6. quantreg
-  + Quantile regression package
+  + Quantile regression package. Used to do a regression analysis on the 95th percent percentile.
 7. xts
-  + eXtensible Time Series package
+  + eXtensible Time Series package. Used to create a time series of objects with the ability to add custom attributes at any time.
 8. zoo
-  + S3 infrastructure for regular and irregular time series package
+  + S3 infrastructure for regular and irregular time series package. Used to transform our data into a structure that we can use to interface with other time series data and packages.
   
 The specific functions used where:  
   
@@ -574,7 +574,7 @@ The specific functions used where:
 ## Data Insights
 Explain some of the data exploration, statistics and graphs here - include some research on foreign exchange rates.
 
-The data exploration loads the exrates.csv dataset, which includes timeseries on the following exchange rates:
+The data exploration loads the exrates.csv dataset, which includes 260 observations of timeseries on the following exchange rates:
   + USD.EUR
   + USD.GBP
   + USD.CNY
@@ -649,7 +649,11 @@ Additionally, the computed data moments provide additional measures of the data 
 knitr::kable(answer)
 ```
 
-As noted earlier, more variance is present between USD.JPY, USD.EUR, and USD.GBP. Additionally, USD.CNY, and USD.GBP has the greatest kurtosis values. This means there are more frequent occuring data points near the tails of the corresponding distribution. Furthermore, USD.GBP has a high standard deviation, and high kurtosis. This indicates investment opportunities are too variable, with significant outliers accounting for high risk (i.e. kurtosis). The best conservative investment is likely USD.EUR, since it has the second smallest kurtosis (by a small margin), while the second smallest standard deviation. The best aggressive investment is likely to be USD.CNY, since it has the highest kurtosis with skewness, while having the smallest standard deviation.
+As noted earlier, more variance is present between USD.JPY, USD.EUR, and USD.GBP. Additionally, USD.CNY, and USD.GBP has the greatest kurtosis values. This means there are more frequent occuring data points near the tails of the corresponding distribution. Furthermore, USD.GBP has a high standard deviation, and high kurtosis. This indicates investment opportunities are too variable, with significant outliers accounting for high risk (i.e. kurtosis). The best conservative investment is likely USD.EUR, since it has the second smallest kurtosis (by a small margin), while the second smallest standard deviation and a comparably high rate of exchange. The best aggressive investment is likely to be USD.CNY, since it has the highest kurtosis with skewness, while having the smallest standard deviation.
 
 ## Business Remarks
 Attempt interpretations to help managers understand they way market interactions affect accounts receivables.  What is the interplay between supplier costs and customer costs for this business?  How does China rates impact the situation?
+
+Our analysis above indicates that we would prefer more of our working capital that is tied up in accounts receivable to be in the European and Japanese market to mitigate the risk of the exchange rates. 
+
+In looking at the nature of the exchange rates we can see that the Chinese Yuan is the least volatile making it more predictable than the Yen, Euro and Pound, all of which experience high volatility.  The CNY also has the highest level of skewness and kurtosis which is very dangerous in the risk business.  Although the CNY may be the most predictable rate it associated with high risk.
