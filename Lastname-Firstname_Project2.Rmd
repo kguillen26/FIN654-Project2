@@ -67,6 +67,11 @@ knitr::knit_hooks$set(mysize = function(before, options, envir) {
 #install.packages("tinytex")
 #install.packages("magick")
 #install.packages("plotly")
+#install.packages("xts")
+#install.packages("ggplot2")
+#install.packages("moments")
+#install.packages("matrixStats")
+#install.packages("quantreg")
 ```
 
 ## Libraries to include
