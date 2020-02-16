@@ -574,6 +574,82 @@ The specific functions used where:
 ## Data Insights
 Explain some of the data exploration, statistics and graphs here - include some research on foreign exchange rates.
 
+The data exploration loads the exrates.csv dataset, which includes timeseries on the following exchange rates:
+  + USD.EUR
+  + USD.GBP
+  + USD.CNY
+  + USD.JPY
+
+Corresponding timeseries plots indicate greatest return volatilility between the EUR, GBP, and JPY:
+
+```{r Data Analysis}
+
+library(reshape2)
+
+types = c("returns", "size", "direction")
+
+for (type in types) {
+  meltdf = melt(exrates.df, 
+                id.vars = "dates",
+                measure.vars = c(paste0(type, ".USD.EUR"),
+                                 paste0(type, ".USD.GBP"),
+                                 paste0(type, ".USD.CNY"),
+                                 paste0(type, ".USD.JPY")))
+
+  print(ggplot(meltdf, 
+               aes(x = dates, 
+                   y = value, 
+                   colour = variable, 
+                   group = variable)) +
+          geom_line() +
+          ggtitle(paste0(type, " vs Date")) +
+          theme(plot.title = 
+                  element_text(hjust = 0.5, size = 50),
+                text = element_text(size = 40),
+                legend.position = "none") +
+          facet_wrap(~variable))
+}
+```
+
+Additionally, size serves as another measure of volatility. In the above case, JPY, along with GBP and EUR have the highest level of absolute value change. When computing return autocorrelations, multiple results are found. However, only a handful are significant:
+
+  + USD.EUR (D)
+  + USD.EUR + USD.GBP (D)
+  + USD.GBP (D)
+  + USD.CNY (D)
+  + USD.JPY (D)
+
+Partial autocorrelations also exists:
+
+  + USD.EUR
+  + USD.EUR + USD.CNY
+  + USD.GBP + USD.CNY
+  + USD.JPY + USD.GBP
+  + USD.JPY + USD.CNY
+
+When computing the sizes autocorrelations, multiple results are found. However, only a handful are significant:
+
+  + USD.EUR
+  + USD.GBP
+  + USD.CNY (D)
+  + USD.JPY
+
+Partial autocorrelations also exists:
+
+  + USD.EUR + ESD.CNY
+  + USD.G + USD.CNY
+  + USD.CNY
+  + USD.JPY + USD.CNY
+
+The above (partial|auto) correlations indicate that different time series distributions may have differing levels of serial correlation. Rather than using the lag.max as blanket solution, or simply concluding that serial correlation can result in successive error terms, more attention may be required to adjust the corresponding timeseries data.
+
+Additionally, the computed data moments provide additional measures of the data distribution:
+
+```{r Answer in table format}
+knitr::kable(answer)
+```
+
+As noted earlier, more variance is present between USD.JPY, USD.EUR, and USD.GBP. Additionally, USD.CNY, and USD.GBP has the greatest kurtosis values. This means there are more frequent occuring data points near the tails of the corresponding distribution. Furthermore, USD.GBP has a high standard deviation, and high kurtosis. This indicates investment opportunities are too variable, with significant outliers accounting for high risk (i.e. kurtosis). The best conservative investment is likely USD.EUR, since it has the second smallest kurtosis (by a small margin), while the second smallest standard deviation. The best aggressive investment is likely to be USD.CNY, since it has the highest kurtosis with skewness, while having the smallest standard deviation.
+
 ## Business Remarks
 Attempt interpretations to help managers understand they way market interactions affect accounts receivables.  What is the interplay between supplier costs and customer costs for this business?  How does China rates impact the situation?
-
