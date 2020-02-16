@@ -214,8 +214,10 @@ library(ggplot2)
 library(plotly)
 title.chg <- "Exchange Rate Percent Changes"
 p1 <- autoplot.zoo(exrates.xts[,1:4]) + ggtitle(title.chg) + ylim(-5, 5)
-p2 <- autoplot.zoo(exrates.xts[,5:8]) + ggtitle(title.chg) + ylim(-5, 5)
 ggplotly(p1)
+title.chg <- "Exchange Rate Magnitude (Absolute value) Changes"
+p2 <- autoplot.zoo(exrates.xts[,5:8]) + ggtitle(title.chg) + ylim(-5, 5)
+ggplotly(p2)
 ``` 
 
 2. Let's dig deeper and compute mean, standard deviation, etc. Load the `data_moments()` function. Run the function using the `exrates` data and write a `knitr::kable()` report.
