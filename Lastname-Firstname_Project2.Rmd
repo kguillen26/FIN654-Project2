@@ -291,8 +291,8 @@ two <- ts(exrates.df$returns.USD.GBP)
 # or
 one <- ts(exrates.zr[,1])
 two <- ts(exrates.zr[,2])
-ccf(abs(one), 
-    abs(two), 
+ccf(one, 
+    two, 
     main = "GBP vs. EUR", 
     lag.max = 20, 
     xlab = "", 
@@ -319,7 +319,7 @@ two <- ts(exrates.df$returns.USD.GBP)
 one <- exrates.zr[,1]
 two <- exrates.zr[,2]
 title <- "EUR vs. GBP"
-run_ccf(abs(one), abs(two), main = title, lag = 20, color = "red")
+run_ccf(one, two, main = title, lag = 20, color = "red")
 # now for volatility (sizes)
 one <- ts(abs(exrates.zr[,1]))
 two <- ts(abs(exrates.zr[,2]))
