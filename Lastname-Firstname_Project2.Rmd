@@ -653,6 +653,8 @@ knitr::kable(answer)
 
 As noted earlier, more variance is present between USD.JPY, USD.EUR, and USD.GBP. Additionally, USD.CNY, and USD.GBP has the greatest kurtosis values. This means there are more frequent occuring data points near the tails of the corresponding distribution. Furthermore, USD.GBP has a high standard deviation, and high kurtosis. This indicates investment opportunities are too variable, with significant outliers accounting for high risk (i.e. kurtosis). The best conservative investment is likely USD.EUR, since it has the second smallest kurtosis (by a small margin), while the second smallest standard deviation and a comparably high rate of exchange. The best aggressive investment is likely to be USD.CNY, since it has the highest kurtosis with skewness, while having the smallest standard deviation.
 
+The global events leading to the USD.GBP high standard deviation and high kurtosis values are likely due to the Brexit situation and its global impact. There was a significant amount of uncertainty leading up to the June 2016 vote and especially after it was passed.
+
 ## Business Remarks
 Attempt interpretations to help managers understand they way market interactions affect accounts receivables.  What is the interplay between supplier costs and customer costs for this business?  How does China rates impact the situation?
 
