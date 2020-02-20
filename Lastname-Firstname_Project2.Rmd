@@ -1,5 +1,5 @@
 ---
-title: "Lastname-Firstname_Project1"
+title: "Lastname-Firstname_Project2"
 author:
 - Guillermo Delgado
 - Katie Guillen
@@ -662,6 +662,8 @@ Foreign exchange risk happens when a company engages in financial transactions i
 Foreign exchange risk can also affect investors, who trade in international markets, and businesses engaged in the import or export of products or services to other countries.
 
 The proceeds of a closed trade, whether its a profit or loss, will be denominated in the foreign currency and will be converted back to the investor's base currency. Fluctuations in the exchange rate could adversely affect the conversion resulting in a lower than expected amount.
+
+Transacting in more than one currency creates additional risks for business.  Exchange rates directly impact the cost of doing business globally. Supplier costs are incurred in the each stage of the supply chain and exchange rates impact how that cost trickles up to the final price.  Since we are dealing with volatile exchange rates the cost along the supply chain can shift significantly and directly affect profitability.   On the customer cost side the risk is passed on to the customer so the exchange rate risk is passed onto them in the form of higher prices.
 
 An import or export business also exposes itself to foreign exchange risk by having account payables and receivables affected by currency exchange rates. This risk comes when a contract between two parties specifies an exact prices for goods or services, as well as delivery dates. If a currency’s value fluctuates between when the contract is signed and the delivery date, it could cause a loss for one of the parties.
 
