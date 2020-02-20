@@ -673,7 +673,7 @@ There are three types of foreign exchange risk:
 
 Our analysis above indicates that we would prefer more of our working capital that is tied up in accounts receivable to be in the European and Japanese market to mitigate the risk of the exchange rates. 
 
-In looking at the nature of the exchange rates we can see that the Chinese Yuan is the least volatile making it more predictable than the Yen, Euro and Pound, all of which experience high volatility.  The CNY also has the highest level of skewness and kurtosis which is very dangerous in the risk business.  Although the CNY may be the most predictable rate it associated with high risk.
+In looking at the nature of the exchange rates we can see that the Chinese Yuan is the least volatile making it more predictable than the Yen, Euro and Pound, all of which experience high volatility.  The CNY also has the highest level of skewness and kurtosis which is very dangerous in the risk business.  Although the CNY may be the most predictable rate it is associated with high risk.
 
 ## References
 1. https://www.investopedia.com/terms/f/foreignexchangerisk.asp
